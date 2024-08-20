@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Dog Discovery</string>
+    <string name="breed_image_name">breed image</string>
+    <string name="error_name">Bir Hata Oluştu</string>
 </resources>
