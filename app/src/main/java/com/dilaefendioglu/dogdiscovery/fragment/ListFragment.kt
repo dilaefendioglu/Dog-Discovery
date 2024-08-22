@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dilaefendioglu.dogdiscovery.MainViewModel
-import com.dilaefendioglu.dogdiscovery.R
 import com.dilaefendioglu.dogdiscovery.adapter.DogAdapter
 import com.dilaefendioglu.dogdiscovery.databinding.FragmentListBinding
 
@@ -30,10 +29,8 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = DogAdapter(emptyList()) { dog ->
-            val bundle = Bundle().apply {
-                putSerializable("breed", dog)
-            }
-            findNavController().navigate(R.id.action_listFragment_to_detailFragment, bundle)
+            val action = ListFragmentDirections.actionListFragmentToDetailFragment(dog)
+            findNavController().navigate(action)
         }
 
         binding.recyclerViewDogs.layoutManager = LinearLayoutManager(requireContext())

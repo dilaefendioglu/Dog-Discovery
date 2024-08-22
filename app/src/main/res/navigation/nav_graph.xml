@@ -24,4 +24,4 @@
             android:name="breed"
             app:argType="com.dilaefendioglu.dogdiscovery.data.DogFreeResponse" />
     </fragment>
-    </navigation>
+</navigation>

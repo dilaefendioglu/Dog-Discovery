@@ -4,9 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dilaefendioglu.dogdiscovery.data.DogFreeResponse
-import com.dilaefendioglu.dogdiscovery.R
 import com.dilaefendioglu.dogdiscovery.databinding.ItemDogBinding
-import com.squareup.picasso.Picasso
+import com.dilaefendioglu.dogdiscovery.utils.setImageUrl
 
 class DogAdapter(
     private var dogs: List<DogFreeResponse>,
@@ -31,14 +30,11 @@ class DogAdapter(
         notifyDataSetChanged()
     }
 
-    class DogViewHolder(private val binding: ItemDogBinding) : RecyclerView.ViewHolder(binding.root) {
+    class DogViewHolder(private val binding: ItemDogBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(dog: DogFreeResponse) {
             binding.txtBreedName.text = dog.name
-            Picasso.get()
-                .load(dog.images)
-                .placeholder(R.drawable.load)
-                .error(R.drawable.load)
-                .into(binding.imgBreed)
-            }
+            binding.imgBreed.setImageUrl(dog.images)
         }
     }
+}

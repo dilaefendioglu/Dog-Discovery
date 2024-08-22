@@ -1,11 +1,12 @@
 package com.dilaefendioglu.dogdiscovery.data
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class DogFreeResponse(
     val id: Int,
     val name: String,
-    val breed_group: String,
+    @SerializedName("breed_group") val breedgroup: String,
     val size: String,
     val lifespan: String,
     val origin: String,

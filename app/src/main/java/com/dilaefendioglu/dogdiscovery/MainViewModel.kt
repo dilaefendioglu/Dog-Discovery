@@ -7,13 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.dilaefendioglu.dogdiscovery.api.DogFreeApi
 import com.dilaefendioglu.dogdiscovery.api.DogImageApi
 import com.dilaefendioglu.dogdiscovery.data.DogFreeResponse
+import com.dilaefendioglu.dogdiscovery.service.DogImageService
 import com.dilaefendioglu.dogdiscovery.utils.Extension
 import kotlinx.coroutines.launch
 
-class MainViewModel: ViewModel() {
+class MainViewModel : ViewModel() {
 
     private val breedsService = DogFreeApi.api
-    private val DogImageService = DogImageApi.api
+    private val dogImageService: DogImageService = DogImageApi.api
 
     private val _breeds = MutableLiveData<List<DogFreeResponse>>()
     val breeds: LiveData<List<DogFreeResponse>> get() = _breeds
@@ -50,7 +51,7 @@ class MainViewModel: ViewModel() {
             breedsList.forEach { breed ->
                 val breedName = Extension.formatBreedName(breed.name)
                 try {
-                    val imageResponse = DogImageService.getImage(breedName)
+                    val imageResponse = dogImageService.getImage(breedName)
                     if (imageResponse.isSuccessful && imageResponse.body() != null) {
                         val imageUrl = imageResponse.body()?.message
                         breed.images = imageUrl

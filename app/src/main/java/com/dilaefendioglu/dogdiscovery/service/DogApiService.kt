@@ -7,7 +7,7 @@ import retrofit2.http.GET
 interface DogApiService {
     @GET("dogs")
     suspend fun getBreeds(): Response<List<DogFreeResponse>>
-    }
+}
 
 
 
