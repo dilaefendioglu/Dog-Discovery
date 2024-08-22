@@ -15,4 +15,3 @@ object DogFreeApi {
         retrofit.create(DogApiService::class.java)
     }
 }
-//https://freetestapi.com/api/v1/dogs

@@ -1,4 +1,6 @@
-package com.dilaefendioglu.dogdiscovery
+package com.dilaefendioglu.dogdiscovery.data
+
+import java.io.Serializable
 
 data class DogFreeResponse(
     val id: Int,
@@ -11,5 +13,5 @@ data class DogFreeResponse(
     val colors: List<String>,
     val description: String,
     var images: String? = null
-)
+) : Serializable
 

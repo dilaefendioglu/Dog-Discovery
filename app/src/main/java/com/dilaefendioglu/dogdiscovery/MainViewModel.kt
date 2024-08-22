@@ -4,13 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dilaefendioglu.dogdiscovery.api.DogFreeApi
 import com.dilaefendioglu.dogdiscovery.api.DogImageApi
-import com.dilaefendioglu.dogdiscovery.service.DogApiService
+import com.dilaefendioglu.dogdiscovery.data.DogFreeResponse
+import com.dilaefendioglu.dogdiscovery.utils.Extension
 import kotlinx.coroutines.launch
 
-class MainViewModel(
-    private val breedsService: DogApiService
-) : ViewModel() {
+class MainViewModel: ViewModel() {
+
+    private val breedsService = DogFreeApi.api
+    private val DogImageService = DogImageApi.api
 
     private val _breeds = MutableLiveData<List<DogFreeResponse>>()
     val breeds: LiveData<List<DogFreeResponse>> get() = _breeds
@@ -20,10 +23,6 @@ class MainViewModel(
 
     private val _hasError = MutableLiveData<Boolean>()
     val hasError: LiveData<Boolean> get() = _hasError
-
-    init {
-        getBreeds()
-    }
 
     fun getBreeds() {
         viewModelScope.launch {
@@ -49,25 +48,18 @@ class MainViewModel(
     private fun fetchImagesForBreeds(breedsList: List<DogFreeResponse>) {
         viewModelScope.launch {
             breedsList.forEach { breed ->
-                val breedName = formatBreedName(breed.name)
-
-                // İlk olarak DogImageApi'den resim aldık
+                val breedName = Extension.formatBreedName(breed.name)
                 try {
-                    val imageResponse = DogImageApi.api.getImage(breedName)
+                    val imageResponse = DogImageService.getImage(breedName)
                     if (imageResponse.isSuccessful && imageResponse.body() != null) {
                         val imageUrl = imageResponse.body()?.message
                         breed.images = imageUrl
                     }
                 } catch (e: Exception) {
-                    // DogImageApi'den resim alınamadı, geçici olarak boş bırak
+
                 }
             }
-            _breeds.value = breedsList // Güncellenmiş LiveData'yı yayınla
+            _breeds.value = breedsList
         }
-    }
-
-    private fun formatBreedName(breedName: String): String {
-        // İsim formatı düzeni
-        return breedName.split(" ")[0].lowercase().replace(" ", "_")
     }
 }

@@ -1,24 +1,20 @@
 // DogImageApi.kt
 package com.dilaefendioglu.dogdiscovery.api
 
-import com.dilaefendioglu.dogdiscovery.DogImageResponse
-import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Path
+import com.dilaefendioglu.dogdiscovery.service.DogImageService
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
-interface DogImageApi {
-    @GET("breed/{breed}/images/random")
-    suspend fun getImage(@Path("breed") breed: String): Response<DogImageResponse>
+object DogImageApi {
 
-    companion object {
-        private const val BASE_URL = "https://dog.ceo/api/"
-
-        val api: DogImageApi by lazy {
-            retrofit.create(DogImageApi::class.java)
-        }
-        private val retrofit = retrofit2.Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create())
+    private val retrofit by lazy {
+        Retrofit.Builder()
+            .baseUrl("https://dog.ceo/api/")
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-}
+      val api: DogImageService by lazy {
+          retrofit.create(DogImageService::class.java)
+      }
+    }
+

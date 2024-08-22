@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
+    android:layout_margin="@dimen/spacing_normal"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
     app:cardBackgroundColor="@color/background_color">
@@ -12,112 +12,33 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/txtBreedName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_normal"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black"
-                    android:textAllCaps="true"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginBottom="@dimen/spacing_small"/>
+            android:padding="6dp">
 
                 <ImageView
                     android:id="@+id/imgBreed"
-                    android:layout_width="@dimen/image_size_normal"
-                    android:layout_height="@dimen/image_size_large"
-                    android:scaleType="fitCenter"
+                    android:layout_width="@dimen/image_size_small"
+                    android:layout_height="@dimen/image_size_small"
                     android:contentDescription="@string/breed_image_name"
-                    app:layout_constraintTop_toBottomOf="@id/txtBreedName"
+                    android:scaleType="fitCenter"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="@dimen/spacing_small"
-                    android:layout_marginEnd="@dimen/spacing_small"/>
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/txtBreedName"
+                    android:layout_marginEnd="@dimen/spacing_small" />
 
                 <TextView
-                    android:id="@+id/txtBreedGroup"
+                    android:id="@+id/txtBreedName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_small"
+                    android:textAllCaps="true"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/text_size_small"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="@dimen/text_size_normal"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/imgBreed"
-                    app:layout_constraintTop_toTopOf="@id/imgBreed" />
-
-                <TextView
-                    android:id="@+id/txtBreedOrigin"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_small"
-                    android:layout_marginTop="@dimen/spacing_xsmall"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/text_size_small"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/imgBreed"
-                    app:layout_constraintTop_toBottomOf="@id/txtBreedGroup" />
-
-                <TextView
-                    android:id="@+id/txtBreedTemperament"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_small"
-                    android:layout_marginTop="@dimen/spacing_xsmall"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/text_size_small"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/imgBreed"
-                    app:layout_constraintTop_toBottomOf="@id/txtBreedOrigin" />
-
-                <TextView
-                    android:id="@+id/txtBreedSize"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_small"
-                    android:layout_marginTop="@dimen/spacing_xsmall"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/text_size_small"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/imgBreed"
-                    app:layout_constraintTop_toBottomOf="@id/txtBreedTemperament" />
-
-                <TextView
-                    android:id="@+id/txtBreedColors"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_small"
-                    android:layout_marginTop="@dimen/spacing_xsmall"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/text_size_small"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/imgBreed"
-                    app:layout_constraintTop_toBottomOf="@id/txtBreedSize" />
-
-                <TextView
-                    android:id="@+id/txtBreedLife"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_small"
-                    android:layout_marginTop="@dimen/spacing_xsmall"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/text_size_small"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/imgBreed"
-                    app:layout_constraintTop_toBottomOf="@id/txtBreedColors" />
-
-                <TextView
-                    android:id="@+id/txtBreedDescription"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_small"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/text_size_small"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imgBreed" />
+                    android:layout_marginStart="@dimen/spacing_small" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
