@@ -10,7 +10,7 @@ object DogImageApi {
 
     private val retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl(Constants.DOG_CEO_APİ_BASE)
+            .baseUrl(Constants.DOG_CEO_API_BASE)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

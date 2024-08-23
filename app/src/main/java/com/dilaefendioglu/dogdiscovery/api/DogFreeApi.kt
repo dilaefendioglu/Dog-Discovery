@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object DogFreeApi {
     private val retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl(Constants.FREETEST_APİ_BASE)
+            .baseUrl(Constants.FREE_API_BASE)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
